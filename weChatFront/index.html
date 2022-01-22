@@ -1,0 +1,484 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>weChat</title>
+    <script src="./js/jquery-3.5.1.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600" rel="stylesheet">
+    <link rel="stylesheet" href="css/reset.min.css">
+    <link rel="stylesheet" href="css/style.css">
+
+
+</head>
+
+<body>
+
+    <div class="wrapper">
+        <div class="message">
+            <svg style="margin-left:5px;margin-bottom:-3px" t="1639708272181" class="icon" viewBox="0 0 1024 1024"
+                version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2195" width="20" height="20">
+                <path
+                    d="M851.2 720c-3.2 0-3.2 0 0 0-32-16-51.2-44.8-51.2-80v-252.8c-3.2-92.8-89.6-201.6-208-230.4-3.2-54.4-38.4-96-80-96s-76.8 41.6-80 96c-121.6 25.6-204.8 137.6-208 230.4v256c0 32-22.4 64-51.2 76.8-32 0-60.8 28.8-60.8 60.8 0 35.2 28.8 60.8 60.8 60.8h195.2c9.6 67.2 70.4 121.6 140.8 121.6s131.2-51.2 140.8-121.6h195.2c35.2 0 60.8-28.8 60.8-60.8s-22.4-60.8-54.4-60.8zM512 89.6c22.4 0 44.8 25.6 48 57.6-32-3.2-64-3.2-96 0 3.2-28.8 25.6-57.6 48-57.6z m0 844.8c-54.4 0-99.2-38.4-108.8-89.6h220.8c-12.8 51.2-57.6 89.6-112 89.6z m339.2-121.6H172.8c-16 0-28.8-12.8-28.8-28.8s12.8-28.8 28.8-28.8c3.2 0 6.4 0 6.4-3.2h3.2c41.6-19.2 67.2-60.8 70.4-105.6v-3.2L256 640v-243.2c0-86.4 80-195.2 198.4-214.4 35.2-6.4 73.6-6.4 105.6 0 121.6 16 208 128 208 217.6v249.6c0 44.8 28.8 86.4 70.4 105.6H848c16 0 28.8 12.8 28.8 28.8 3.2 12.8-9.6 28.8-25.6 28.8z"
+                    p-id="2196" fill="#8a8a8a"></path>
+            </svg>
+            <span style="margin:0px 0 5px 2px;padding-top: -10px;">message！</span>
+        </div>
+        <div class="container">
+            <div class="left">
+                <div class="top">
+                    <img src="./img/白熊.png" alt="" class="profile">
+                    <input type="text" placeholder="Search" style="width:80%;margin-left: 50px;" />
+                    <!-- <a href="javascript:;" class="search"></a> -->
+                </div>
+                <ul class="people">
+                    <!--   <li class="person" data-chat="person1">
+                        <img src="img/thomas.jpg" alt="" />
+                        <span class="name">Thomas Bangalter</span>
+                        <span class="time">2:09 PM</span>
+                        <span class="preview">I was wondering...</span>
+                    </li>
+                    <li class="person" data-chat="person2">
+                        <img src="img/dog.png" alt="" />
+                        <span class="name">dog</span>
+                        <span class="time">1:44 PM</span>
+                        <span class="preview">I've forgotten how it felt before</span>
+                    </li>
+                    <li class="person" data-chat="person3">
+                        <img src="img/louis-ck.jpeg" alt="" />
+                        <span class="name">Louis CK</span>
+                        <span class="time">2:09 PM</span>
+                        <span class="preview">But we’re probably gonna need a new carpet.</span>
+                    </li>
+                    <li class="person" data-chat="person4">
+                        <img src="img/bo-jackson.jpg" alt="" />
+                        <span class="name">Bo Jackson</span>
+                        <span class="time">2:09 PM</span>
+                        <span class="preview">It’s not that bad...</span>
+                    </li>
+                    <li class="person" data-chat="person5">
+                        <img src="img/michael-jordan.jpg" alt="" />
+                        <span class="name">Michael Jordan</span>
+                        <span class="time">2:09 PM</span>
+                        <span class="preview">Wasup for the third time like is
+                            you blind bitch</span>
+                    </li>
+                    <li class="person" data-chat="person6">
+                        <img src="img/drake.jpg" alt="" />
+                        <span class="name">Drake</span>
+                        <span class="time">2:09 PM</span>
+                        <span class="preview">howdoyoudoaspace</span>
+                    </li> -->
+                </ul>
+                <div class="search">
+                    <svg t="1639644039656" class="icon" viewBox="0 0 1024 1024" version="1.1"
+                        xmlns="http://www.w3.org/2000/svg" p-id="2186" width="18" height="18"
+                        onclick="javascript:searchFriend()">
+                        <path
+                            d="M760.090355 263.551488c-17.47807-41.321104-42.487673-78.426187-74.343195-110.281709s-68.960605-56.865125-110.281709-74.343195c-42.784432-18.092054-88.219227-27.27111-135.055952-27.27111-46.826492 0-92.261287 9.179057-135.055952 27.27111-41.310871 17.47807-78.415954 42.487673-110.271476 74.343195s-56.865125 68.960605-74.343195 110.281709c-18.092054 42.784432-27.27111 88.219227-27.27111 135.055952 0 46.826492 9.179057 92.261287 27.27111 135.055952 17.47807 41.310871 42.487673 78.415954 74.343195 110.271476s68.960605 56.865125 110.271476 74.343195c42.794665 18.092054 88.22946 27.27111 135.055952 27.27111 46.836725 0 92.27152-9.179057 135.055952-27.27111 41.321104-17.47807 78.426187-42.487673 110.281709-74.343195s56.865125-68.960605 74.343195-110.271476c18.092054-42.794665 27.27111-88.22946 27.27111-135.055952C787.361465 351.770715 778.182408 306.33592 760.090355 263.551488zM656.797827 614.985536c-57.796334 57.796334-134.64663 89.63139-216.388329 89.63139s-158.581762-31.835056-216.378096-89.63139c-57.796334-57.786101-89.63139-134.636397-89.63139-216.378096s31.835056-158.591995 89.63139-216.388329 134.636397-89.63139 216.378096-89.63139 158.591995 31.835056 216.388329 89.63139c57.796334 57.796334 89.63139 134.64663 89.63139 216.388329S714.594161 557.199435 656.797827 614.985536z"
+                            p-id="2187" fill="#8a8a8a"></path>
+                        <path
+                            d="M954.805058 933.397493c-3.990894 4.001127-9.230222 5.996574-14.46955 5.996574s-10.478655-1.995447-14.46955-5.996574l-193.855126-193.844893c-7.981788-7.992021-7.981788-20.947078 0-28.939099 8.002254-7.992021 20.957311-7.992021 28.949332 0l193.844893 193.844893C962.79708 912.450415 962.79708 925.405471 954.805058 933.397493z"
+                            p-id="2188" fill="#8a8a8a">
+
+                        </path>
+                    </svg>
+                    <input type="text" name="msg" style="width:250px">
+                    </input>
+                </div>
+            </div>
+            <div class="right" id="info">
+                <div class="info">
+                    <span id="title">个人信息</span>
+                    <hr style="width: 110%;margin-left: -5%;margin-top: 3.5%;" />
+                    <form class="form">
+                        姓名：<input class="input" type="text" value="" name="name" placeholder="姓名"><br><br>
+                        密码：<input class="input" type="password" value="" name="password" placeholder="密码"><br><br>
+                        性别：<tr>
+                            <td>
+                                <input type="radio" name="gender" value="1">男
+                                <input type="radio" name="gender" value="1">女
+                            </td>
+                        </tr><br><br>
+                        年龄：<input class="input" type="text" value="" name="age" placeholder="年龄"><br><br>
+                        地址：<input class="input" type="text" value="" name="address" placeholder="居住地址"><br><br>
+                        <!-- 职业：<input class="input" type="text" value="" name="job" placeholder="职业"><br><br> -->
+                        个人简介：<br><textarea style="width: 90%;" class="input" name="intro" cols="50" rows="2"
+                            placeholder="简介"></textarea><br><br>
+                        <input class="button" type="button" value="提交">
+                        <input class="button" type="button" value="重置">
+                    </form>
+
+                </div>
+            </div>
+            <div class="right" id="dialogue">
+                <div class="top"><span>To: <span class="name">dog</span></span></div>
+
+                <div class="write">
+                    <a href="javascript:;" class="write-link attach"></a>
+                    <input type="text" name="msg" />
+                    <a href="javascript:;" class="write-link smiley"></a>
+                    <a href="javascript:sendmsg();" class="write-link send"></a>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <script src="js/index.js"></script>
+    <script src="https://cdn.socket.io/4.4.0/socket.io.js"></script>
+
+    <script>
+
+        //获取用户名
+        var username = window.sessionStorage.getItem("name")
+        var friendList = [];
+        var userList = [];
+        var recordList = [];
+        var msg;
+        var forwardMsg;
+        //数组方法
+        Array.prototype.indexOf = function (val) {
+            for (var i = 0; i < this.length; i++) {
+                if (this[i] == val) return i;
+            }
+            return -1;
+        };
+        Array.prototype.remove = function (val) {
+            var index = this.indexOf(val);
+            if (index > -1) {
+                this.splice(index, 1);
+            }
+        };
+        $(".message").hide();
+        //登录即连接socket服务端
+        var socket = io("http://localhost:9001", { 'timeout': 5000, 'connect timeout': 5000 });
+        socket.emit('join', username)
+
+        //检查连接
+        if (socket != undefined) {
+            console.log('connected to socket.io......');
+        }
+
+        //获取登录用户信息，创建登录页面
+        $.get(`http://localhost:9001/user/${username}`).then((res) => {
+            var userInfo = res;
+            friendList = res.friendList
+            console.log("个人信息：" + userInfo);
+            $("[name='name']").val(userInfo.name);
+            $("[name='password']").val(userInfo.password);
+            $("[name='gender']").val(userInfo.gender);
+            $("[name='address']").val(userInfo.address);
+            $("[name='age']").val(userInfo.age);
+            $("[name='intro']").val(userInfo.intro);
+            //更改页面元素
+            $(".top").find("img").attr("src", userInfo.url)
+        })
+
+        //获取用户好友信息，创建左侧好友列表
+        $.get(`http://localhost:9001/user`).then((res) => {
+            userList = res;
+
+            console.log("friendList:" + friendList);
+            userList.forEach(element => {
+                //若该用户不在好友列表中，则将之除去
+                if (friendList.indexOf(element.name) == -1) {
+                    userList.remove(element);
+                }
+            });
+            var num = 0
+            for (var i = 0; i < userList.length; i++) {
+                if (userList[i].name != username) {
+                    num++;
+                    userList[i].num = num;
+                    var li = $("<li></li>").attr("class", "person").attr("data-chat", `person${num}`).attr("id", "person");
+                    var img = $("<img></img>").attr("src", userList[i].url);
+                    var name = $("<span></span>").attr("class", "name").text(userList[i].name);
+                    li.append(img, name);
+                    $(".people").append(li);
+                    var div_chat = $("<div></div>").attr("class", "chat").attr("data-chat", `person${num}`);
+                    var div_start_time = $("<div></div>").attr("class", "conversation-start");
+                    var span = $("<span></span>");
+                    div_start_time.append(span);
+                    div_chat.append(div_start_time);
+                    $(".write").before(div_chat);
+                    console.log("userList:" + userList[i].name)
+                    /* $('li.person').click(function () {
+                        console.log("别点啦")
+                        $("#info").css("display", "none")
+                        $("#dialogue").show();
+                        f.classList.contains('active') || setAciveChat(f);
+                    }); */
+
+                    //获取聊天信息
+                    $.get(`http://localhost:9001/record/${username}/${userList[i].name}`).then((res) => {
+
+                        if (res.length > 0) {
+                            //console.log(username+"的聊天记录："+res.length)
+                            $(".conversation-start").find("span").text(res[0].time)
+                            recordList = res;
+                            console.log("recordList" + recordList)
+                            for (var i = 0; i < recordList.length; i++) {
+                                //若为我方发送的消息，呈现在右侧
+                                if (recordList[i].name1 == username) {
+                                    //var _messgae = recordList[i]
+                                    var div_bubble_me = $("<div></div>").addClass("bubble me").text(recordList[i].content).attr({
+                                        "onclick": `javascript:createMenu($(this))`,
+                                        "time": recordList[i].time
+                                    })
+                                    for (var j = 0; j < userList.length; j++) {
+                                        if (userList[j].name == recordList[i].name2) {
+                                            console.log("ww " + userList[j].name + j)
+                                            $(".right").find('[data-chat="person' + userList[j].num + '"]').append(div_bubble_me)
+                                        }
+                                    }
+                                }
+                                else {
+                                    //var _messgae = recordList[i]
+                                    var div_bubble_you = $("<div></div>").addClass("bubble you").text(recordList[i].content).attr({
+                                        "onclick": `javascript:createMenu($(this))`,
+                                        "time": recordList[i].time
+                                    })
+                                    for (var j = 0; j < userList.length; j++) {
+                                        if (userList[j].name == recordList[i].name1) {
+                                            $(".right").find('[data-chat="person' + userList[j].num + '"]').append(div_bubble_you)
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    })
+                }
+            }
+            //设置好友列表属性
+            friends.list = $('ul.people');
+            friends.all = $('.left .person');
+            //设置聊天列表属性
+
+            chat.container = $("#dialogue");
+            chat.name = $(".name");
+            console.log("friends:" + friends.all.length)
+            for (var i = 0; i < userList.length && userList[i] != username; i++) {
+                var friendName = userList[i].name;
+
+                $('.chat[data-chat=person1]').addClass('active-chat');
+                $('.person[data-chat=person1]').addClass('active');
+                $('.person').click(function () {
+                    console.log("点击：" + $(this))
+                    $("#info").css("display", "none")
+                    $("#dialogue").show();
+                    $(this).hasClass('active') || setAciveChat($(this));
+                    //console.log("ww:"+$(this).is('active'))
+
+                });
+            }
+        })
+
+
+        //发送信息
+        const sendmsg = () => {
+            //alert("发送信息："+ $(".write").find("[name='msg']").val())
+            //判断字符是否为空
+            var regu = "^[ ]+$";
+            var re = new RegExp(regu);
+            var content = $(".write").find("[name='msg']").val();
+            if (content == "" || re.test(content)) return;
+            var mydate = new Date();
+            var newMsg = {
+                "time": mydate.toLocaleString(),
+                "content": content,
+                "name1": username,
+                "name2": $(".active").children(".name").text()
+            }
+
+
+
+            //将信息存入数据库
+            $.post("http://localhost:9001/record", newMsg).then(() => {
+                var div_bubble_me = $("<div></div>").attr("class", "bubble me").text(newMsg.content)
+                for (var i = 0; i < userList.length; i++) {
+                    if (userList[i].name == newMsg.name2) {
+                        $('div[data-chat="person' + userList[i].num + '"]').append(div_bubble_me)
+                    }
+                }
+            })
+            //与socket服务端交互
+            console.log(username + "客户端发送信息")
+            socket.emit('send', newMsg, () => {
+                //清空输入框
+                $("input[name='msg']").val("")
+            })
+
+
+        }
+
+        //接收信息
+        socket.on('forward', (msg, callback) => {
+            /* if (msg.trim().length == 0) {
+              return;
+            } */
+            console.log(username + "客户端接收信息")
+            //callback(true);
+            var div_bubble_you = $("<div></div>").attr("class", "bubble you").text(msg.content)
+            for (var i = 0; i < userList.length; i++) {
+                if (userList[i].name == msg.name1) {
+                    $(".right").find('[data-chat="person' + userList[i].num + '"]').append(div_bubble_you)
+                }
+            }
+        })
+
+        //搜索并添加好友
+        const searchFriend = () => {
+            var friendName = $(".search").find("input").val();
+            var friend = {
+                "userName": username,
+                "friendName": friendName
+            }
+            $.post(`http://localhost:9001/friend`, friend).then((res) => {
+                if (res == "err") {
+                    $(".message").find("span").text("出错！")
+                    $(".message").show();
+                    setTimeout(() => {
+                        $(".message").hide();
+                    }, 2000);
+                }
+                else if (res == "already") {
+                    $(".message").find("span").text(friendName + "已经是您的好友！")
+                    $(".message").show();
+                    setTimeout(() => {
+                        $(".message").hide();
+                    }, 2000);
+                }
+                else if (res == "none") {
+                    $(".message").find("span").text("该用户不存在！")
+                    $(".message").show();
+                    setTimeout(() => {
+                        $(".message").hide();
+                    }, 2000);
+                }
+                else {
+                    $(".message").css("color", "#3edd2f")
+                    $(".message").find("span").text("添加好友成功！")
+                    $(".message").show();
+                    setTimeout(() => {
+                        $(".message").hide();
+                        $(".message").css("color", "#e6a23c")
+
+                    }, 2000);
+
+                    location.reload();
+                }
+            })
+        }
+
+        var isMenu = 0
+        var bubble;
+        //创建菜单
+        const createMenu = (e) => {
+            msg = {
+                name1: username,
+                name2: $(".top").find(".name").text(),
+                content: e.text(),
+                time: e.attr("time")
+            }
+            console.log("时间：" + msg)
+            //获取被点击气泡框元素
+            var e = window.event;
+            bubble = e.target;
+            console.log("bubble:" + $(bubble))
+            //添加菜单元素
+            var menu = $("<div></div>").addClass("card").attr({
+                "onmouseleave": `javascrip:leaveMenu()`
+            });
+            var div_withdraw = $("<div></div>").addClass("block1").text("撤回").attr("onclick", `javascript:withdraw($(bubble),msg)`).css("cursor", "pointer");
+            var hr = $("<hr></hr>")
+            var div_forward = $("<div></div>").addClass("block2").text("转发").attr("onclick", `javascript:forward($(bubble),msg)`).css("cursor", "pointer");
+            menu.append(div_withdraw, hr, div_forward);
+
+
+            if (isMenu == 0) {
+                $("#dialogue").append(menu);
+                isMenu = 1;
+            }
+            //获取聊天气泡坐标，设置菜单位置
+            var y = e.target.offsetTop;
+            var x = e.target.offsetLeft;
+            var length = e.target.offsetWidth;
+            console.log("宽度：" + length)
+            if (x < 210) { menu.css("margin", `-${550 - y}px 0 0 ${x + length + 10}px`) }
+            else { menu.css("margin", `-${550 - y}px 0px 0 ${360 - length}px`) }
+            //获取点击的聊天对象
+            var friendName = $(".top").find(".name").text();
+            var content = bubble.innerText;
+
+
+        }
+
+        //离开菜单
+        const leaveMenu = () => {
+            isMenu = 0;
+            $(".card").remove();
+        }
+
+        //点击撤回按钮
+        withdraw = function (bubble, msg) {
+            $.post("http://localhost:9001/record/delete", msg).then((res) => {
+                if (res == "success") {
+                    bubble.remove();
+                    $(".message").find("span").text("消息已撤回！")
+                    $(".message").show();
+                    setTimeout(() => {
+                        $(".message").hide();
+                    }, 2000);
+                }
+            })
+        }
+
+        //点击发送按钮
+        forward = function (bubble, msg) {
+            forwardMsg = msg
+            var img = $("<img></img>").attr("src", "img/转发.svg").addClass("forward").css("width", "24px");
+            $("li").append(img);
+            $(".forward").click(function () {
+                var myDate = new Date();
+                var name2 = $(this).siblings("span").text();
+                forwardMsg.name1 = username
+                forwardMsg.name2 = name2
+                forwardMsg.time = myDate.toLocaleString(),
+                //console.log("转发："+forwardMsg.content)
+                //将信息存入数据库
+                $.post("http://localhost:9001/record", forwardMsg).then(() => {
+                    var div_bubble_me = $("<div></div>").attr("class", "bubble me").text(newMsg.content)
+                    for (var i = 0; i < userList.length; i++) {
+                        if (userList[i].name == forwardMsg.name2) {
+                            $('div[data-chat="person' + userList[i].num + '"]').append(div_bubble_me)
+                        }
+                    }
+                })
+                //与socket服务端交互
+                console.log(username + "客户端发送信息")
+                socket.emit('send', forwardMsg, () => {
+                })
+                $(".forward").remove();
+                location.reload();
+                $(".message").css("color", "#3ce675")
+                $(".message").css("background-color", "#ecfdef")
+                $(".message").find("span").text("转发成功！")
+                $(".message").show();
+                setTimeout(() => {
+                    $(".message").hide();
+                    $(".message").css("color", "#e6a23c")
+                    $(".message").css("background-color", "#fdf6ec")
+                }, 2000);
+                
+            })
+        }
+
+    </script>
+    <div style="text-align:center;margin:1px 0; font:normal 14px/24px 'MicroSoft YaHei';">
+    </div>
+</body>
+
+</html>

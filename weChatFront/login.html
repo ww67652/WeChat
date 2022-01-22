@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./js/jquery-3.5.1.js"></script>
+    <link rel="stylesheet" href="./css/login.css">
+
+    <title>weChat</title>
+</head>
+
+<body>
+    
+    <section>
+        <div class="message">
+            <svg style="margin-left:5px;margin-bottom:-3px" t="1639708272181" class="icon" viewBox="0 0 1024 1024"
+                version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2195" width="20" height="20">
+                <path
+                    d="M851.2 720c-3.2 0-3.2 0 0 0-32-16-51.2-44.8-51.2-80v-252.8c-3.2-92.8-89.6-201.6-208-230.4-3.2-54.4-38.4-96-80-96s-76.8 41.6-80 96c-121.6 25.6-204.8 137.6-208 230.4v256c0 32-22.4 64-51.2 76.8-32 0-60.8 28.8-60.8 60.8 0 35.2 28.8 60.8 60.8 60.8h195.2c9.6 67.2 70.4 121.6 140.8 121.6s131.2-51.2 140.8-121.6h195.2c35.2 0 60.8-28.8 60.8-60.8s-22.4-60.8-54.4-60.8zM512 89.6c22.4 0 44.8 25.6 48 57.6-32-3.2-64-3.2-96 0 3.2-28.8 25.6-57.6 48-57.6z m0 844.8c-54.4 0-99.2-38.4-108.8-89.6h220.8c-12.8 51.2-57.6 89.6-112 89.6z m339.2-121.6H172.8c-16 0-28.8-12.8-28.8-28.8s12.8-28.8 28.8-28.8c3.2 0 6.4 0 6.4-3.2h3.2c41.6-19.2 67.2-60.8 70.4-105.6v-3.2L256 640v-243.2c0-86.4 80-195.2 198.4-214.4 35.2-6.4 73.6-6.4 105.6 0 121.6 16 208 128 208 217.6v249.6c0 44.8 28.8 86.4 70.4 105.6H848c16 0 28.8 12.8 28.8 28.8 3.2 12.8-9.6 28.8-25.6 28.8z"
+                    p-id="2196" fill="#8a8a8a"></path>
+            </svg>
+            <span style="margin:0px 0 5px 2px;padding-top: -10px;">message！</span>
+        </div>
+        <!-- 背景颜色 -->
+        <div class="color"></div>
+        <div class="color"></div>
+        <div class="color"></div>
+        <div class="box">
+            <!-- 背景圆 -->
+            <div class="circle" style="--x:0"></div>
+            <div class="circle" style="--x:1"></div>
+            <div class="circle" style="--x:2"></div>
+            <div class="circle" style="--x:3"></div>
+            <div class="circle" style="--x:4"></div>
+            <!-- 登录框 -->
+            <div class="container">
+                <div class="form">
+                    <h2>登录</h2>
+                    <form>
+                        <div class="inputBox">
+                            <input type="text" placeholder="姓名">
+
+                        </div>
+                        <div class="inputBox">
+                            <input type="password" placeholder="密码">
+
+                        </div>
+                        <div class="inputBox">
+                            <input type="submit" value="登录">
+
+                        </div>
+                        <p class="forget">忘记密码?<a href="#">
+                                点击这里
+                            </a></p>
+                        <p class="forget" id="trans">没有账户?<a href="javascript:transPattern()">
+                                注册
+                            </a></p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+<script>
+    $(".message").hide();
+    //判断字符是否为空
+    var regu = "^[ ]+$";
+    var re = new RegExp(regu);
+            
+    $("input[value='登录']").mousedown(function () {
+
+        if (pattern == 0) {
+            var name = $("input[type='text']").val();
+            var password = $("input[type='password']").val();
+            if (name == ""||re.test(name)) {
+                $(".message").find("span").text("请输入用户名")
+                $(".message").show()
+                setTimeout(() => {
+                    $(".message").hide()
+                }, 3000);
+                return;
+            }
+            if (password == ""||re.test(password)) {
+                $(".message").find("span").text("请输入密码")
+                $(".message").show()
+                setTimeout(() => {
+                    $(".message").hide()
+                }, 3000);
+                return;
+            }
+
+            $.get(`http://localhost:9001/user/${name}/pw/${password}`).then((res) => {
+                if (res == "success") {
+                    $(".message").css("color", "#3edd2f")
+                    $(".message").find("span").text("登录成功")
+                    $(".message").show();
+                    setTimeout(() => {
+                        $(".message").hide();
+                        $(".message").css("color", "#e6a23c")
+
+                    }, 2000);
+                    window.sessionStorage.setItem("name", name)
+                    window.location.href = 'index.html';
+                }
+                else if (res == "undefined name") {
+                    $(".message").find("span").text("用户名不存在")
+                    $(".message").show();
+                    setTimeout(() => {
+                        $(".message").hide();
+                    }, 2000);
+                }
+                else {
+                    $(".message").find("span").text("密码错误")
+                    $(".message").show();
+                    setTimeout(() => {
+                        $(".message").hide();
+                    }, 2000);
+                }
+            })
+        }
+        else {
+            console.log("注册")
+            var name = $("input[type='text']").val();
+            var password = $("input[type='password']").val();
+            if (name == ""||re.test(name)) {
+                $(".message").find("span").text("请输入用户名")
+                $(".message").show();
+                setTimeout(() => {
+                    $(".message").hide();
+                }, 2000);
+                return;
+            }
+            if (password == ""||re.test(password)) {
+                $(".message").find("span").text("请输入密码")
+                $(".message").show();
+                setTimeout(() => {
+                    $(".message").hide();
+                }, 2000);
+                return;
+            }
+            var user = {
+                "name": name,
+                "password": password
+            }
+            $.post(`http://localhost:9001/user`, user).then((err, res) => {
+                if (res == "success") {
+                    $(".message").css("color", "#3edd2f")
+                    $(".message").find("span").text("注册成功！")
+                    $(".message").show();
+                    setTimeout(() => {
+                        $(".message").hide();
+                        $(".message").css("color", "#e6a23c")
+
+                    }, 2000);
+                    window.sessionStorage.setItem("name", name)
+                    window.location.href = 'index.html';
+                }
+                else {
+                    $(".message").find("span").text("用户名已存在")
+                    $(".message").show();
+                    setTimeout(() => {
+                        $(".message").hide();
+                    }, 2000);
+                }
+
+            })
+        }
+    })
+
+
+    $("input[value='注册']").mousedown(function () {
+        console.log("注册")
+        var name = $("input[type='text']").val();
+        var password = $("input[type='password']").val();
+        if (name == ""||re.test(name)) {
+            $(".message").find("span").text("请输入用户名")
+                $(".message").show()
+                setTimeout(() => {
+                    $(".message").hide()
+                }, 3000);
+            return;
+        }
+        if (password == ""||re.test(password)) {
+            $(".message").find("span").text("请输入密码")
+                $(".message").show()
+                setTimeout(() => {
+                    $(".message").hide()
+                }, 3000);
+            return;
+        }
+        var user = {
+            "name": name,
+            "password": password
+        }
+        $.post(`http://localhost:9001/user`, user).then((res) => {
+            if (res == "success") {
+                window.sessionStorage.setItem("name", name)
+                window.location.href = 'index.html';
+            }
+            else {
+                $(".message").find("span").text("用户名已存在")
+                $(".message").show()
+                setTimeout(() => {
+                    $(".message").hide()
+                }, 3000);
+            }
+
+        })
+
+    })
+
+    //模式变量，0表示登录，1表示注册
+    var pattern = 0;
+    const transPattern = () => {
+        //登录 → 注册
+        if (pattern == 0) {
+            pattern = 1;
+            $("h2").text("注册");
+            $("[type='submit']").attr("value", "注册");
+            $(".forget").eq(1).html($(".forget").eq(1).html().replace("没有账户?", "已有账户?"))
+            //$(".forget").eq(1).text("已有账户?");
+            $(".forget").eq(1).find("a").text("    登录")
+        }
+        else {
+            pattern = 0;
+            $("h2").text("登录");
+            $("[type='submit']").attr("value", "登录");
+            $(".forget").eq(1).html($(".forget").eq(1).html().replace("已有账户?", "没有账户?"))
+            //$(".forget").eq(1).text("没有账户?");
+            $(".forget").eq(1).find("a").text("    注册")
+        }
+    }
+</script>
+
+</html>
